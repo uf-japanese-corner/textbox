@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Textbox</title>
+  <link rel="icon" type="image/x-icon" href="https://en.touhouwiki.net/images/c/c9/Icon_th06.png">
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      background-color: #f0f0f0;
+    }
+
+    body {
+      display: flex;
+      box-sizing: border-box;
+      padding: 1vw;
+    }
+
+    textarea {
+      flex: 1;
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      padding: 1rem;
+      font-family: sans-serif;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      resize: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <textarea id="persistent-txt" placeholder="入力してください"></textarea>
+
+  <script>
+    const textarea = document.getElementById('persistent-txt');
+    const STORAGE_KEY = 'my_textarea_content';
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedContent = localStorage.getItem(STORAGE_KEY);
+      if (savedContent) {
+        textarea.value = savedContent;
+      }
+    });
+
+    textarea.addEventListener('input', () => {
+      localStorage.setItem(STORAGE_KEY, textarea.value);
+    });
+  </script>
+
+</body>
+
+</html>
